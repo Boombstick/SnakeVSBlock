@@ -3,22 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BreakBarrier : MonoBehaviour
-{
-    public int MinHealth;
-    public int MaxHealth;
+{ 
     public int CurrentHealth;
 
-    private void Awake()
-    {
-        CurrentHealth = MinHealth;
-    }
+
 
     IEnumerator HealthController()
     {
-        while (MinHealth > 0)
+        while (CurrentHealth > 0)
         {
-            MinHealth--;
-            CurrentHealth = MinHealth+1;
+            CurrentHealth--;
             if (CurrentHealth == 1)
             {
                 Destroy(gameObject);
