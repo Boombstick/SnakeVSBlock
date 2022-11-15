@@ -695,7 +695,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 72737794cc01c9f4ab709ffba91c9500, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1849,10 +1849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7e165a7799c634098f92ff0e584462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointsText: {fileID: 681978451}
-  Length: 1
   MoveSpeed: 5
-  CubeHealth: {fileID: 5982499623536014324, guid: c23e8fb3b09fead4b953192851fed766, type: 3}
 --- !u!54 &1602627652
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1894,8 +1891,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24646e1e3c23b97459bcd4057c3bd5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 1602627652}
   Game: {fileID: 1854292635}
+  Rigidbody: {fileID: 1602627652}
+  Cube: {fileID: 0}
+  CubeHealth: {fileID: 0}
+  PointsText: {fileID: 0}
+  PlayerHealth: 0
+  Length: 1
 --- !u!4 &1615672943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5982499623536014327, guid: c23e8fb3b09fead4b953192851fed766, type: 3}
@@ -1960,7 +1962,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b0e0370a557384a44a21e3db7cea4eb6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2120,7 +2122,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: eb3d8e9e513f2fe4aa7e3bb47bfbc4e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2359,6 +2361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2044280371}
   - component: {fileID: 2044280370}
+  - component: {fileID: 2044280372}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -2443,6 +2446,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &2044280372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044280369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1001 &2062938573
 PrefabInstance:
   m_ObjectHideFlags: 0
