@@ -7,11 +7,12 @@ public class Player : MonoBehaviour
 {
     public Game Game;
     public Rigidbody Rigidbody;
-    public BreakBarrier Cube;
-    public BreakBarrier CubeHealth;
+    public BreakBarrier BreakBarrier;
     public TextMeshPro PointsText;
+    public BubbleInteract BubbleInteract;
     public int PlayerHealth;
-    public int Length = 1;
+    public int Length;
+    public int X = 4;
 
 
     private SnakeTail componentSnakeTail;
@@ -19,9 +20,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        PlayerHealth = 1;
         componentSnakeTail = GetComponent<SnakeTail>();
-        Length = componentSnakeTail.snakeCircles.Count + 1;
-        PointsText.SetText(Length.ToString());
+        Length = componentSnakeTail.positions.Count;
+        PointsText.SetText(PlayerHealth.ToString());
     }
     private void Update()
     {
@@ -31,42 +33,77 @@ public class Player : MonoBehaviour
             {
                 componentSnakeTail.AddCircle();
             }
+            PlayerHealth++;
             Length++;
-            PointsText.SetText(Length.ToString());
+            PointsText.SetText(PlayerHealth.ToString());
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             componentSnakeTail.RemoveCircle();
             Length--;
-            PointsText.SetText(Length.ToString());
+            PlayerHealth--;
+            PointsText.SetText(PlayerHealth.ToString());
         }
-
     }
 
     IEnumerator CircleRemove()
     {
-        while (CubeHealth.CurrentHealth > 1)
+       int cubeHealth = BreakBarrier.CurrentHealth;
+        while (cubeHealth > 0)
         {
-            if (componentSnakeTail.snakeCircles.Count > 0 && componentSnakeTail.positions.Count > 0)
+            if (PlayerHealth>0)
             {
+                PlayerHealth--;
                 Length--;
-                PointsText.SetText(Length.ToString());
+                cubeHealth--;
+                PointsText.SetText(PlayerHealth.ToString());
+                if (Length > 0)
+                {
                 componentSnakeTail.RemoveCircle();
-
+                }
             }
-            yield return new WaitForSeconds(0.2f);
+            if (PlayerHealth == 0)
+            {
+                Die();
+            }
+            yield return new WaitForSeconds(0.3f);
         }
     }
-
-
-    private void OnCollisionEnter(Collision other)
+    IEnumerator PickUpTheBubble()
     {
-        if (other.collider.tag == "Barrier")
+        while (X > 0)
+        {
+            componentSnakeTail.AddCircle();
+            X--;
+            Length++;
+            PlayerHealth++;
+            
+            PointsText.SetText(Length.ToString());
+
+        }
+        yield return new WaitForSeconds(0.1f);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Barrier")
         {
             StartCoroutine(CircleRemove());
         }
-
+        if (other.tag == "Bubble")
+        {
+            BubbleInteract.BubbleDestroy();
+            StartCoroutine(PickUpTheBubble());
+        }
     }
+
+    //private void OnCollisionEnter(Collision other)
+    //{
+    //    if (other.collider.tag == "Barrier")
+    //    {
+    //        StartCoroutine(CircleRemove());
+    //    }
+
+    //}
     public void ReachFinish()
     {
         Game.OnPlayerReachedFinish();
@@ -78,4 +115,5 @@ public class Player : MonoBehaviour
         Game.OnPlayerDied();
         Rigidbody.velocity = Vector3.zero;
     }
+    
 }

@@ -10,24 +10,37 @@ public class BreakBarrier : MonoBehaviour
 
     IEnumerator HealthController()
     {
-        while (CurrentHealth > 0)
+        while (CurrentHealth >= 0)
         {
             CurrentHealth--;
-            if (CurrentHealth == 1)
+            if (CurrentHealth == 0)
             {
                 Destroy(gameObject);
             }
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.3f);
         }
        
     }
-
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.tag == "Player")
+        {
         StartCoroutine(HealthController());
- 
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+
+        }
     }
-   
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.tag == "Player")
+        {
+        StopAllCoroutines();
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+
+        }
+    }
+
 
 
 }

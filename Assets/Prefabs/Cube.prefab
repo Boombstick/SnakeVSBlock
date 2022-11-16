@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 5982499623536014321}
   - component: {fileID: 5982499623536014320}
   - component: {fileID: 5982499623536014324}
+  - component: {fileID: 3361961428346374308}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Barrier
@@ -281,7 +282,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5982499623536014323}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.9293723, y: 1, z: 1.1191761}
@@ -298,4 +299,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b0ff6aa5aa51840a34e7b85bda2879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 5
+  CurrentHealth: 4
+--- !u!64 &3361961428346374308
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5982499623536014323}
+  m_Material: {fileID: 13400000, guid: 92286d1dc46e3594894d48cf13cc98e9, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}

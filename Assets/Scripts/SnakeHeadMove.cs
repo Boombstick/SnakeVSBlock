@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class SnakeHeadMove : MonoBehaviour
 {
+    public float Sensativity;
     public float MoveSpeed;
     private Rigidbody _rb;
+    
 
     void Start()
     {
@@ -20,7 +22,7 @@ public class SnakeHeadMove : MonoBehaviour
     private void MovementLogic(float MoveSpeed)
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, 1f);
+        Vector3 movement = new Vector3(moveHorizontal*Sensativity, 0.0f, 1f);
 
         _rb.AddForce(movement * MoveSpeed);
         
