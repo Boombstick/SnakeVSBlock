@@ -7,7 +7,6 @@ public class Game : MonoBehaviour
 {
     public GameObject LoseScreen;
     public GameObject WinScreen;
-    public GameObject MainMenu;
     public GameObject LevelInterface;
     public SnakeHeadMove SnakeHeadMove;
     public BreakBarrier BreakBarrier;
@@ -48,20 +47,9 @@ public class Game : MonoBehaviour
     {
         WinScreen.SetActive(true);
     }
-
-    public void BackToMenu()
-    {
-        gameObject.SetActive(false);
-        LevelInterface.SetActive(false);
-        MainMenu.SetActive(true);
-    }
     public void NextLevel()
     {
        
-    }
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
     
