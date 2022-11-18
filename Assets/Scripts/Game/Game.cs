@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
+    public GameObject LoseScreen;
+    public GameObject WinScreen;
+    public GameObject LevelInterface;
     public SnakeHeadMove SnakeHeadMove;
     public BreakBarrier BreakBarrier;
     public enum State
@@ -20,6 +24,7 @@ public class Game : MonoBehaviour
         CurrentState = State.Loss;
         SnakeHeadMove.enabled = false;
         BreakBarrier.enabled = false;
+        ScreenOfLose();
         Debug.Log("You Loss");
     }
 
@@ -29,10 +34,22 @@ public class Game : MonoBehaviour
         CurrentState = State.Won;
         SnakeHeadMove.enabled = false;
         BreakBarrier.enabled = false;
+        StopAllCoroutines();
+        ScreenOfWin();
         Debug.Log("You Won");
         
     }
-
-
+    public void ScreenOfLose()
+    {
+        LoseScreen.SetActive(true);
+    }
+    public void ScreenOfWin()
+    {
+        WinScreen.SetActive(true);
+    }
+    public void NextLevel()
+    {
+       
+    }
 }
     
