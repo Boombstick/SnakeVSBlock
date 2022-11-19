@@ -5079,7 +5079,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6135431645622735021}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -5128,9 +5128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7e165a7799c634098f92ff0e584462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sensativity: 5
-  MoveSpeed: 500
-  MaxSpeed: 25
+  Sensativity: 100000
+  MoveSpeed: 10
+  MaxSpeed: 30
 --- !u!114 &6135431645622735019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5147,7 +5147,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 6135431645622735017}
   BreakBarrier: {fileID: 5982499623536014324, guid: c23e8fb3b09fead4b953192851fed766, type: 3}
   PointsText: {fileID: 6135431646379807422}
-  BubbleInteract: {fileID: 0}
+  BubbleInteract: {fileID: 3177181253061211856, guid: e8f206e5f59bef04396ea934a0bd35d6, type: 3}
   CurrentCube: {fileID: 0}
   PlayerParticle: {fileID: 8210403352336085085}
   HeadSnake: {fileID: 6135431645458898628}

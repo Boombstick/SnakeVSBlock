@@ -25,16 +25,19 @@ public class SnakeHeadMove : MonoBehaviour
 
     private void MovementLogic()
     {
-        if (_rb.velocity.magnitude >= MaxSpeed)
-        {
-            _rb.velocity = _rb.velocity.normalized * MaxSpeed;
-        }
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        Vector3 movement = new Vector3(moveHorizontal * Sensativity*MoveSpeed, 0.0f, MoveSpeed);
-      
-        _rb.AddForce(movement);
 
-       
+        Vector3 movement = new Vector3(0f, 0.0f, MoveSpeed);
+        _rb.velocity = movement;
+        if (Input.GetKey("a")|| Input.GetKey("d"))
+        {
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            movement = new Vector3(moveHorizontal*Sensativity, movement.y, movement.z);
+            _rb.AddForce(movement);
+        }
+        //if (_rb.velocity.magnitude == MaxSpeed)
+        //{
+        //    _rb.velocity = _rb.velocity.normalized * MaxSpeed;
+        //}
 
     }
 

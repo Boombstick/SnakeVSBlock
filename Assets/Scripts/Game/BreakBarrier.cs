@@ -10,12 +10,6 @@ public class BreakBarrier : MonoBehaviour
     public Player Player;
 
     private AudioSource _audio;
-
-    private void Awake()
-    {
-        
-
-    }
     private void Start()
     {
         _audio = GetComponent<AudioSource>();

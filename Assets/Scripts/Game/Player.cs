@@ -107,6 +107,14 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.tag == "Barrier")
+        {
+            StopAllCoroutines();
+        }
+    }
     public void ReachFinish()
     {
         Rigidbody.velocity = Vector3.zero;
