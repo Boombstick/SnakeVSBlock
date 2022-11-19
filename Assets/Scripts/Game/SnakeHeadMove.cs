@@ -7,6 +7,7 @@ public class SnakeHeadMove : MonoBehaviour
 {
     public float Sensativity;
     public float MoveSpeed;
+    public float MaxSpeed;
     private Rigidbody _rb;
     
 
@@ -16,20 +17,25 @@ public class SnakeHeadMove : MonoBehaviour
     }
     void FixedUpdate()
     {
-        MovementLogic(MoveSpeed);
-    }
+        MovementLogic();
 
-    private void MovementLogic(float MoveSpeed)
-    {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        Vector3 movement = new Vector3(moveHorizontal*Sensativity, 0.0f, 1f);
-
-        _rb.AddForce(movement * MoveSpeed);
         
     }
 
-  
-  
-    
+
+    private void MovementLogic()
+    {
+        if (_rb.velocity.magnitude >= MaxSpeed)
+        {
+            _rb.velocity = _rb.velocity.normalized * MaxSpeed;
+        }
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        Vector3 movement = new Vector3(moveHorizontal * Sensativity*MoveSpeed, 0.0f, MoveSpeed);
+      
+        _rb.AddForce(movement);
+
+       
+
+    }
 
 }

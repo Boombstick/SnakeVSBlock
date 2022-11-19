@@ -10,6 +10,12 @@ public class Game : MonoBehaviour
     public GameObject LevelInterface;
     public SnakeHeadMove SnakeHeadMove;
     public BreakBarrier BreakBarrier;
+    public GameObject Score;
+
+    private int _topScore;
+    private int _bottomScore;
+    private int _intermediateScore;
+    private int _highestLevel;
     public enum State
     { 
         Playing,
@@ -18,13 +24,22 @@ public class Game : MonoBehaviour
     }
     public State CurrentState { get; private set; }
 
+    private void Awake()
+    {
+        _topScore = PlayerPrefs.GetInt("TopScore");
+    }
     public void OnPlayerDied()
     {
         if (CurrentState != State.Playing) return;
         CurrentState = State.Loss;
         SnakeHeadMove.enabled = false;
-        BreakBarrier.enabled = false;
         ScreenOfLose();
+        _intermediateScore = PlayerPrefs.GetInt("Score");
+        PlayerPrefs.SetInt("intermediateScore", _intermediateScore);
+        _bottomScore = PlayerPrefs.GetInt("Score");
+        PlayerPrefs.SetInt("Score", 0);
+        TopScore();
+
         Debug.Log("You Loss");
     }
 
@@ -33,9 +48,15 @@ public class Game : MonoBehaviour
         if (CurrentState != State.Playing) return;
         CurrentState = State.Won;
         SnakeHeadMove.enabled = false;
-        BreakBarrier.enabled = false;
         StopAllCoroutines();
         ScreenOfWin();
+        _highestLevel++;
+        _intermediateScore = PlayerPrefs.GetInt("Score");
+        PlayerPrefs.SetInt("intermediateScore", _intermediateScore);
+        _bottomScore = PlayerPrefs.GetInt("Score");
+        PlayerPrefs.SetInt("HighestLevel", _highestLevel);
+        TopScore();
+
         Debug.Log("You Won");
         
     }
@@ -47,9 +68,13 @@ public class Game : MonoBehaviour
     {
         WinScreen.SetActive(true);
     }
-    public void NextLevel()
+    public void TopScore()
     {
-       
+        if (_topScore<_bottomScore)
+        {
+            PlayerPrefs.SetInt("TopScore", _bottomScore);
+        }
     }
+
 }
     

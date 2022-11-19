@@ -10,29 +10,35 @@ public class Player : MonoBehaviour
     public BreakBarrier BreakBarrier;
     public TextMeshPro PointsText;
     public BubbleInteract BubbleInteract;
+    public CurrentCube CurrentCube;
+    public ParticleSystem PlayerParticle;
+    public GameObject HeadSnake;
+    public GameObject Text;
     public int PlayerHealth;
     public int Length;
     public int X = 4;
 
+    public int _score;
 
+    private AudioSource _audio;
     private SnakeTail componentSnakeTail;
 
+   
 
     void Start()
     {
+        _audio = GetComponent<AudioSource>();
         PlayerHealth = 1;
         componentSnakeTail = GetComponent<SnakeTail>();
         Length = componentSnakeTail.positions.Count;
         PointsText.SetText(PlayerHealth.ToString());
+        _score = PlayerPrefs.GetInt("Score");
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (Length < 8)
-            {
-                componentSnakeTail.AddCircle();
-            }
+            componentSnakeTail.AddCircle();
             PlayerHealth++;
             Length++;
             PointsText.SetText(PlayerHealth.ToString());
@@ -48,23 +54,24 @@ public class Player : MonoBehaviour
 
     IEnumerator CircleRemove()
     {
-       int cubeHealth = BreakBarrier.CurrentHealth;
+        int cubeHealth = CurrentCube.GetComponent<BreakBarrier>().CurrentHealth;
         while (cubeHealth > 0)
         {
             if (PlayerHealth>0)
             {
+                cubeHealth--;
                 PlayerHealth--;
                 Length--;
-                cubeHealth--;
+                _score++;
                 PointsText.SetText(PlayerHealth.ToString());
-                if (Length > 0)
-                {
-                componentSnakeTail.RemoveCircle();
-                }
+                PlayerPrefs.SetInt("Score", _score);
+                if (Length > 0) componentSnakeTail.RemoveCircle();
+                _audio.Play();  
             }
             if (PlayerHealth == 0)
             {
                 Die();
+                break;
             }
             yield return new WaitForSeconds(0.3f);
         }
@@ -85,6 +92,10 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.TryGetComponent(out BreakBarrier cube))
+        {
+            cube.Player = this;
+        }
         if (other.tag == "Barrier")
         {
             StartCoroutine(CircleRemove());
@@ -94,26 +105,27 @@ public class Player : MonoBehaviour
             BubbleInteract.BubbleDestroy();
             StartCoroutine(PickUpTheBubble());
         }
+
     }
-
-    //private void OnCollisionEnter(Collision other)
-    //{
-    //    if (other.collider.tag == "Barrier")
-    //    {
-    //        StartCoroutine(CircleRemove());
-    //    }
-
-    //}
     public void ReachFinish()
     {
-        Game.OnPlayerReachedFinish();
         Rigidbody.velocity = Vector3.zero;
+        Game.OnPlayerReachedFinish();
     }
 
+    private void ParticleStop()
+    {
+        PlayerParticle.Stop();
+    }
     public void Die()
     {
-        Game.OnPlayerDied();
+        PlayerParticle.Play();
+        Text.SetActive(false);
+        HeadSnake.GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
         Rigidbody.velocity = Vector3.zero;
+        Invoke("ParticleStop", 1f); 
+        Game.OnPlayerDied();
     }
     
 }
