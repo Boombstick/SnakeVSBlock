@@ -787,8 +787,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449732135}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.31203157, y: 0.5, z: 3.2603302}
-  m_LocalScale: {x: 11.988286, y: 1, z: 0.037303552}
+  m_LocalPosition: {x: 0.08, y: 0.5, z: 3.2603302}
+  m_LocalScale: {x: 9.946012, y: 1, z: 0.037303552}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1701312381}
@@ -3740,6 +3740,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15df12eed11b68848bf4f1116b25a600, type: 3}
+--- !u!1 &198977546496935680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 198977545686385026, guid: 15df12eed11b68848bf4f1116b25a600, type: 3}
+  m_PrefabInstance: {fileID: 198977546496935679}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3177181254237439519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3897,6 +3902,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8403275077781172472, guid: 7cc051420f574514db413060f3dc0b50, type: 3}
+      propertyPath: PauseScreen
+      value: 
+      objectReference: {fileID: 198977546496935680}
     - target: {fileID: 2155526091459197527, guid: 7cc051420f574514db413060f3dc0b50, type: 3}
       propertyPath: m_Name
       value: Scene Manager

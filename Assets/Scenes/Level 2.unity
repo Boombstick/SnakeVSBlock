@@ -1138,8 +1138,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215502241}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.31203157, y: 0.5, z: 3.2603302}
-  m_LocalScale: {x: 11.988286, y: 1, z: 0.037303552}
+  m_LocalPosition: {x: 0.08, y: 0.5, z: 3.2603302}
+  m_LocalScale: {x: 9.946012, y: 1, z: 0.037303552}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2029677677}
@@ -3433,6 +3433,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8403275077781172472, guid: 7cc051420f574514db413060f3dc0b50, type: 3}
+      propertyPath: PauseScreen
+      value: 
+      objectReference: {fileID: 632428547}
     - target: {fileID: 2155526091459197527, guid: 7cc051420f574514db413060f3dc0b50, type: 3}
       propertyPath: m_Name
       value: Scene Manager
