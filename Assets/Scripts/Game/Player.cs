@@ -78,10 +78,10 @@ public class Player : MonoBehaviour
     }
     IEnumerator PickUpTheBubble()
     {
-        while (X > 0)
+        while (BubbleInteract.BubbleHealth > 0)
         {
             componentSnakeTail.AddCircle();
-            X--;
+            BubbleInteract.BubbleHealth--;
             Length++;
             PlayerHealth++;
             
@@ -102,8 +102,8 @@ public class Player : MonoBehaviour
         }
         if (other.tag == "Bubble")
         {
-            BubbleInteract.BubbleDestroy();
             StartCoroutine(PickUpTheBubble());
+            BubbleInteract.BubbleDestroy();
         }
 
     }

@@ -10,7 +10,7 @@ public class CameraMove : MonoBehaviour
 
 
         Vector3 transformPosition = transform.position;
-        transformPosition.z = Target.position.z - 3f;
+        transformPosition.z = Target.position.z - 9.8f;
         transform.position = transformPosition ;
     }
 }

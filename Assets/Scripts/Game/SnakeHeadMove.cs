@@ -34,11 +34,6 @@ public class SnakeHeadMove : MonoBehaviour
             movement = new Vector3(moveHorizontal*Sensativity, movement.y, movement.z);
             _rb.AddForce(movement);
         }
-        //if (_rb.velocity.magnitude == MaxSpeed)
-        //{
-        //    _rb.velocity = _rb.velocity.normalized * MaxSpeed;
-        //}
-
     }
 
 }

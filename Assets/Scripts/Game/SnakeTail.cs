@@ -9,6 +9,7 @@ public class SnakeTail : MonoBehaviour
 
     public List<Transform> snakeCircles = new List<Transform>();
     public List<Vector3> positions = new List<Vector3>();
+    public List<Transform> snakeCirclesReverse = new List<Transform>();
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class SnakeTail : MonoBehaviour
 
         for (int i = 0; i < snakeCircles.Count; i++)
         {
+            //snakeCircles[i].position = Vector3.MoveTowards(positions[i+1], positions[i], distance/ CircleDiameter);
             snakeCircles[i].position = Vector3.Lerp(positions[i + 1], positions[i], distance / CircleDiameter);
         }
     }
@@ -46,8 +48,13 @@ public class SnakeTail : MonoBehaviour
 
     public void RemoveCircle()
     {
+
         Destroy(snakeCircles[0].gameObject);
         snakeCircles.RemoveAt(0);
         positions.RemoveAt(1);
+
+
+
     }
+
 }
